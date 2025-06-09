@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RoCleaner | Discord Cleaner</title>
+    <title>RoCleaner | By Sysdriver</title>
     <style>
         :root {
             --primary: #FF3355;
@@ -14,6 +14,7 @@
             --light: #F0F0F0;
             --lighter: #FFFFFF;
             --gray: #888888;
+            --online: #43b581;
         }
         
         body {
@@ -152,6 +153,58 @@
             color: var(--gray);
             font-size: 0.9rem;
         }
+        
+        /* Bot status styles */
+        .bot-status-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.05);
+            gap: 15px;
+        }
+        
+        .bot-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--online);
+            box-shadow: 0 0 15px var(--online);
+        }
+        
+        .status-info {
+            text-align: left;
+        }
+        
+        .bot-name {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .status-indicator {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+        
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 8px;
+            background-color: var(--online);
+            box-shadow: 0 0 10px var(--online);
+        }
+        
+        .server-count {
+            margin-top: 10px;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
     </style>
 </head>
 <body>
@@ -159,14 +212,27 @@
         <h1 class="logo">RoCleaner</h1>
         <p class="description">Advanced Discord bot that automatically detects and removes banned users</p>
         
-        <a href=" https://discord.com/oauth2/authorize?client_id=1373063366133940224&permissions=1101674884102&integration_type=0&scope=bot " 
+        <!-- Bot Status Card -->
+        <div class="bot-status-card">
+            <img src="https://i.imgur.com/FvrVPdx.png" alt="RoCleaner Avatar" class="bot-avatar">
+            <div class="status-info">
+                <div class="bot-name">RoCleaner</div>
+                <div class="status-indicator">
+                    <div class="status-dot"></div>
+                    <span>Online</span>
+                </div>
+                <div class="server-count">Database : 500k+ </div>
+            </div>
+        </div>
+        
+        <a href="https://discord.com/oauth2/authorize?client_id=1373063366133940224&permissions=1101674884102&integration_type=0&scope=bot" 
            class="invite-button">
            Add to Discord
         </a>
         <p class="permission-note">Requires <strong>Ban Members</strong> permission</p>
         
         <a href="https://github.com/Hazinf/Rocleaner" class="github-link" target="_blank">
-            RoCleaner is open source - View on GitHub
+            RoCleaner is open source - Deleted
         </a>
     </div>
     
