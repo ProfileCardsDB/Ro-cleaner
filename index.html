@@ -265,34 +265,115 @@
             text-align: center;
         }
         
-        /* Responsive design */
+        /* Enhanced responsive design */
         @media (max-width: 600px) {
+            body {
+                padding-top: 100px; /* Add padding to account for fixed nav */
+            }
+            
             .container {
-                padding: 20px;
+                padding: 15px;
+                margin: 10px;
+                width: 95%;
+                max-width: none; /* Remove max-width to use full screen width */
             }
             
             .logo {
-                font-size: 2.5rem;
+                font-size: 2rem; /* Smaller logo font size */
+            }
+            
+            .description {
+                font-size: 0.95rem; /* Smaller description text */
+                margin-bottom: 20px;
             }
             
             .invite-button {
-                padding: 12px 24px;
+                padding: 10px 20px;
                 font-size: 1rem;
+                width: 100%; /* Full-width button */
+                box-sizing: border-box;
+            }
+            
+            .permission-note {
+                font-size: 0.8rem;
             }
             
             nav {
                 flex-direction: column;
                 align-items: center;
-                gap: 10px;
+                padding: 10px;
+                gap: 8px;
+                font-size: 0.9rem;
+            }
+            
+            .nav-link {
+                padding: 8px;
+                width: 100%;
+                text-align: center;
+                box-sizing: border-box;
             }
             
             .bot-status-card {
                 flex-direction: column;
                 text-align: center;
+                padding: 10px;
             }
             
             .status-info {
                 text-align: center;
+            }
+            
+            .bot-avatar {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .bot-name {
+                font-size: 1rem;
+            }
+            
+            .status-indicator {
+                font-size: 0.8rem;
+                justify-content: center;
+            }
+            
+            .server-count {
+                font-size: 0.8rem;
+            }
+            
+            footer {
+                font-size: 0.8rem;
+                padding: 10px;
+                margin-top: 20px;
+            }
+            
+            .github-link {
+                font-size: 0.9rem;
+            }
+        }
+        
+        /* Extra small screens (below 400px) */
+        @media (max-width: 400px) {
+            .logo {
+                font-size: 1.8rem;
+            }
+            
+            .description {
+                font-size: 0.85rem;
+            }
+            
+            .invite-button {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+            
+            .bot-avatar {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .container {
+                padding: 10px;
             }
         }
     </style>
