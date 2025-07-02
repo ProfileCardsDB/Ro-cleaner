@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RoCleaner | Donate</title>
+  <style>
+    :root {
+      --primary: #FF3355;
+      --primary-dark: #CC0022;
+      --primary-light: #FF6677;
+      --dark: #0F0F12;
+      --darker: #0A0A0C;
+      --light: #F0F0F0;
+      --lighter: #FFFFFF;
+      --gray: #888888;
+      --online: #43b581;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--light);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--dark);
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255, 51, 85, 0.1) 0%, transparent 25%),
+        radial-gradient(circle at 70% 70%, rgba(255, 51, 85, 0.1) 0%, transparent 25%);
+      animation: rotate 20s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    nav {
+      width: 100%;
+      padding: 20px;
+      background: rgba(15, 15, 18, 0.8);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .nav-link {
+      color: var(--primary-light);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 600px;
+      width: 90%;
+      padding: 140px 20px 20px;
+      background: rgba(15, 15, 18, 0.8);
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: left;
+      margin-top: 120px;
+      position: relative;
+    }
+
+    .logo {
+      font-size: 3rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 30px;
+      text-align: center;
+      text-shadow: 0 0 15px rgba(255, 51, 85, 0.3);
+    }
+
+    .donator-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 20px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .donator-card img {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .donator-info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .donator-card .name {
+      font-weight: bold;
+      font-size: 1.3rem;
+      color: var(--light);
+      margin-bottom: 5px;
+    }
+
+    .donator-card .bio {
+      font-size: 0.95rem;
+      color: var(--gray);
+      margin-bottom: 10px;
+    }
+
+    .donator-card .donate-button {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      width: fit-content;
+    }
+
+    .donator-card .donate-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(255, 51, 85, 0.6);
+    }
+
+    .donation-note {
+      color: var(--gray);
+      font-size: 0.9rem;
+      margin: 40px 20px 0;
+      max-width: 600px;
+      width: 90%;
+      text-align: left;
+    }
+
+    footer {
+      margin: 40px 20px;
+      color: var(--gray);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 100px 10px 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+
+      .logo {
+        font-size: 2.5rem;
+      }
+
+      .donator-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .donator-card img {
+        width: 56px;
+        height: 56px;
+      }
+
+      .donator-card .name {
+        font-size: 1rem;
+      }
+
+      .donator-card .bio {
+        font-size: 0.85rem;
+      }
+
+      .donator-card .donate-button {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+      }
+
+      .donation-note {
+        font-size: 0.8rem;
+        margin-top: 30px;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="https://rocleaner.netlify.app/" class="nav-link">Home</a>
+    <a href="https://rocleaner.netlify.app/tos" class="nav-link">Terms of Service</a>
+    <a href="https://rocleaner.netlify.app/donate" class="nav-link">Donate</a>
+  </nav>
+
+  <div class="container">
+    <h1 class="logo">Support RoCleaner</h1>
+    <div class="donator-card">
+      <img src="https://i.imgur.com/hTpTHcU.png" alt="User PFP">
+      <div class="donator-info">
+        <div class="name">Your User</div>
+        <div class="bio">your bio</div>
+        <a href="https://paypal.me/Hazinf" class="donate-button">Donate</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="donation-note">
+    Rocleaner will always be free as I pay the hosting all charges are paid by me if you could contribute to the project that would be nice (you also get a special role in the server)
+  </div>
+
+  <footer>
+    <p>© 2025 RoCleaner Bot | Not affiliated with Discord Inc.</p>
+  </footer>
+</body>
+</html>
