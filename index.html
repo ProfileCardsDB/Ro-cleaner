@@ -34,52 +34,190 @@
             overflow-x: hidden;
         }
         
+        /* Enhanced multi-layer background */
         body::before {
             content: '';
-            position: absolute;
+            position: fixed;
             top: -50%;
             left: -50%;
             width: 200%;
             height: 200%;
             background: 
-                radial-gradient(circle at 30% 30%, rgba(255, 51, 85, 0.1) 0%, transparent 25%),
-                radial-gradient(circle at 70% 70%, rgba(255, 51, 85, 0.1) 0%, transparent 25%);
-            animation: rotate 20s linear infinite;
-            z-index: -1;
+                radial-gradient(circle at 20% 20%, rgba(255, 51, 85, 0.15) 0%, transparent 35%),
+                radial-gradient(circle at 80% 80%, rgba(255, 51, 85, 0.15) 0%, transparent 35%),
+                radial-gradient(circle at 60% 30%, rgba(255, 51, 85, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 30% 70%, rgba(255, 51, 85, 0.08) 0%, transparent 50%);
+            animation: rotate 25s linear infinite;
+            z-index: -3;
         }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(45deg, transparent 30%, rgba(255, 51, 85, 0.02) 50%, transparent 70%),
+                linear-gradient(-45deg, transparent 30%, rgba(255, 51, 85, 0.02) 50%, transparent 70%);
+            animation: shimmer 8s ease-in-out infinite alternate;
+            z-index: -2;
+            pointer-events: none;
+        }
+        
+        /* Floating particles effect */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .particle:nth-child(1) { width: 3px; height: 3px; left: 10%; animation-delay: 0s; animation-duration: 8s; }
+        .particle:nth-child(2) { width: 2px; height: 2px; left: 20%; animation-delay: 1s; animation-duration: 10s; }
+        .particle:nth-child(3) { width: 4px; height: 4px; left: 30%; animation-delay: 2s; animation-duration: 7s; }
+        .particle:nth-child(4) { width: 2px; height: 2px; left: 40%; animation-delay: 3s; animation-duration: 9s; }
+        .particle:nth-child(5) { width: 3px; height: 3px; left: 50%; animation-delay: 4s; animation-duration: 11s; }
+        .particle:nth-child(6) { width: 2px; height: 2px; left: 60%; animation-delay: 5s; animation-duration: 8s; }
+        .particle:nth-child(7) { width: 4px; height: 4px; left: 70%; animation-delay: 6s; animation-duration: 10s; }
+        .particle:nth-child(8) { width: 3px; height: 3px; left: 80%; animation-delay: 7s; animation-duration: 9s; }
+        .particle:nth-child(9) { width: 2px; height: 2px; left: 90%; animation-delay: 8s; animation-duration: 12s; }
+        .particle:nth-child(10) { width: 3px; height: 3px; left: 15%; animation-delay: 9s; animation-duration: 7s; }
         
         @keyframes rotate {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
         
+        @keyframes shimmer {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.7; }
+        }
+        
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(100vh) translateX(0px) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 0.1; }
+            90% { opacity: 0.1; }
+            50% { 
+                transform: translateY(-10vh) translateX(50px) rotate(180deg);
+                opacity: 0.1;
+            }
+        }
+        
         .container {
             max-width: 500px;
             width: 90%;
             padding: 40px;
-            background: rgba(15, 15, 18, 0.8);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(15, 15, 18, 0.9);
+            border-radius: 20px;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 51, 85, 0.1);
             margin: 20px 0;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.1),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), transparent, var(--primary));
+            border-radius: 22px;
+            z-index: -1;
+            opacity: 0.3;
+            animation: borderGlow 4s ease-in-out infinite alternate;
+        }
+        
+        @keyframes borderGlow {
+            0% { opacity: 0.2; }
+            100% { opacity: 0.5; }
         }
         
         .logo {
             font-size: 3rem;
             font-weight: 700;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            background: linear-gradient(135deg, var(--primary), var(--primary-light), #FF8899);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             margin-bottom: 20px;
-            text-shadow: 0 0 15px rgba(255, 51, 85, 0.3);
+            text-shadow: 0 0 30px rgba(255, 51, 85, 0.4);
+            animation: logoGlow 3s ease-in-out infinite alternate;
+            position: relative;
+        }
+        
+        .logo::after {
+            content: 'RoCleaner';
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            filter: blur(10px);
+            opacity: 0.5;
+            z-index: -1;
+            animation: logoBlur 3s ease-in-out infinite alternate;
+        }
+        
+        @keyframes logoGlow {
+            0% { filter: brightness(1) drop-shadow(0 0 15px rgba(255, 51, 85, 0.3)); }
+            100% { filter: brightness(1.2) drop-shadow(0 0 25px rgba(255, 51, 85, 0.6)); }
+        }
+        
+        @keyframes logoBlur {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.7; }
         }
         
         .description {
             color: var(--gray);
             margin-bottom: 30px;
             font-size: 1.1rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
         
         .invite-button {
@@ -87,20 +225,25 @@
             background: linear-gradient(135deg, var(--primary), var(--primary-dark));
             color: white;
             padding: 15px 30px;
-            border-radius: 8px;
+            border-radius: 12px;
             text-decoration: none;
             font-weight: 700;
             font-size: 1.2rem;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             margin: 20px 0;
-            box-shadow: 0 4px 20px rgba(255, 51, 85, 0.4);
+            box-shadow: 
+                0 8px 25px rgba(255, 51, 85, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.1);
             position: relative;
             overflow: hidden;
         }
         
         .invite-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 51, 85, 0.6);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 
+                0 15px 35px rgba(255, 51, 85, 0.6),
+                0 0 0 1px rgba(255, 255, 255, 0.2);
+            background: linear-gradient(135deg, #FF4466, var(--primary));
         }
         
         .invite-button::after {
@@ -113,7 +256,7 @@
             background: linear-gradient(
                 to bottom right,
                 rgba(255, 255, 255, 0) 45%,
-                rgba(255, 255, 255, 0.3) 50%,
+                rgba(255, 255, 255, 0.4) 50%,
                 rgba(255, 255, 255, 0) 55%
             );
             transform: rotate(30deg);
@@ -121,12 +264,30 @@
         }
         
         .invite-button:hover::after {
-            animation: shine 1.5s;
+            animation: shine 1.5s ease-out;
+        }
+        
+        .invite-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            transition: all 0.6s ease;
+        }
+        
+        .invite-button:hover::before {
+            width: 300px;
+            height: 300px;
         }
         
         @keyframes shine {
             0% { left: -50%; opacity: 0; }
-            20% { opacity: 0.5; }
+            20% { opacity: 0.6; }
             100% { left: 150%; opacity: 0; }
         }
         
@@ -134,6 +295,7 @@
             color: var(--gray);
             font-size: 0.9rem;
             margin-top: 10px;
+            animation: fadeInUp 1s ease-out 0.2s both;
         }
         
         .github-link, .nav-link {
@@ -141,30 +303,57 @@
             margin-top: 20px;
             color: var(--primary-light);
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
         }
         
         .github-link:hover, .nav-link:hover {
             color: var(--primary);
-            text-decoration: underline;
+            transform: translateY(-2px);
+        }
+        
+        .github-link::after, .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-light));
+            transition: width 0.3s ease;
+        }
+        
+        .github-link:hover::after, .nav-link:hover::after {
+            width: 100%;
         }
         
         footer {
             margin-top: 40px;
             color: var(--gray);
             font-size: 0.9rem;
+            animation: fadeInUp 1.2s ease-out 0.4s both;
         }
         
-        /* Bot status styles */
+        /* Enhanced bot status styles */
         .bot-status-card {
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 20px;
-            padding: 15px;
-            border-radius: 8px;
-            background-color: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.08);
             gap: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-out 0.1s both;
+        }
+        
+        .bot-status-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
         
         .bot-avatar {
@@ -173,7 +362,23 @@
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid var(--online);
-            box-shadow: 0 0 15px var(--online);
+            box-shadow: 
+                0 0 20px rgba(67, 181, 129, 0.6),
+                0 0 40px rgba(67, 181, 129, 0.3);
+            transition: all 0.3s ease;
+            animation: avatarPulse 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes avatarPulse {
+            0% { box-shadow: 0 0 20px rgba(67, 181, 129, 0.6), 0 0 40px rgba(67, 181, 129, 0.3); }
+            100% { box-shadow: 0 0 30px rgba(67, 181, 129, 0.8), 0 0 60px rgba(67, 181, 129, 0.5); }
+        }
+        
+        .bot-avatar:hover {
+            transform: scale(1.1);
+            box-shadow: 
+                0 0 30px rgba(67, 181, 129, 0.8),
+                0 0 60px rgba(67, 181, 129, 0.5);
         }
         
         .status-info {
@@ -184,6 +389,10 @@
             font-weight: bold;
             font-size: 1.2rem;
             margin-bottom: 5px;
+            background: linear-gradient(135deg, var(--lighter), var(--light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         
         .status-indicator {
@@ -198,20 +407,36 @@
             border-radius: 50%;
             margin-right: 8px;
             background-color: var(--online);
-            box-shadow: 0 0 10px var(--online);
+            box-shadow: 0 0 15px var(--online);
+            animation: statusPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes statusPulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 0 15px var(--online);
+            }
+            50% { 
+                transform: scale(1.2);
+                box-shadow: 0 0 25px var(--online);
+            }
         }
         
         .server-count {
             margin-top: 10px;
             font-size: 0.9rem;
             color: var(--gray);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 5px 10px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        /* Navigation styles */
+        /* Enhanced navigation styles */
         nav {
             width: 100%;
             padding: 20px;
-            background: rgba(15, 15, 18, 0.8);
+            background: rgba(15, 15, 18, 0.95);
             position: fixed;
             top: 0;
             left: 0;
@@ -219,20 +444,36 @@
             display: flex;
             justify-content: center;
             gap: 20px;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
         }
         
         /* Donators page styles */
         .donator-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.08);
             padding: 20px;
-            border-radius: 8px;
+            border-radius: 12px;
             margin: 20px 0;
             text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+        
+        .donator-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
         }
         
         .donator-card h3 {
             font-size: 1.5rem;
             margin-bottom: 10px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         
         .donator-card p {
@@ -263,34 +504,35 @@
             max-width: 600px;
             width: 90%;
             text-align: center;
+            animation: fadeInUp 1.4s ease-out 0.6s both;
         }
         
         /* Enhanced responsive design */
         @media (max-width: 600px) {
             body {
-                padding-top: 100px; /* Add padding to account for fixed nav */
+                padding-top: 100px;
             }
             
             .container {
                 padding: 15px;
                 margin: 10px;
                 width: 95%;
-                max-width: none; /* Remove max-width to use full screen width */
+                max-width: none;
             }
             
             .logo {
-                font-size: 2rem; /* Smaller logo font size */
+                font-size: 2rem;
             }
             
             .description {
-                font-size: 0.95rem; /* Smaller description text */
+                font-size: 0.95rem;
                 margin-bottom: 20px;
             }
             
             .invite-button {
                 padding: 10px 20px;
                 font-size: 1rem;
-                width: 100%; /* Full-width button */
+                width: 100%;
                 box-sizing: border-box;
             }
             
@@ -350,6 +592,10 @@
             .github-link {
                 font-size: 0.9rem;
             }
+            
+            .particle {
+                display: none; /* Hide particles on mobile for performance */
+            }
         }
         
         /* Extra small screens (below 400px) */
@@ -379,6 +625,19 @@
     </style>
 </head>
 <body>
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+    
     <nav>
         <a href="https://rocleaner.netlify.app/" class="nav-link">Home</a>
         <a href="https://rocleaner.netlify.app/tos" class="nav-link">Terms of Service</a>
